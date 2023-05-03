@@ -1,3 +1,6 @@
+# Originally coded by Novaspirit Tech
+# Copy this code into your code.py file.
+
 import time
 import usb_hid
 from adafruit_hid.keycode import Keycode
@@ -5,13 +8,26 @@ from adafruit_hid.keyboard import Keyboard
 import board
 import digitalio
 
+print('Script begun')
 
-btn1_pin = board.GP9
-btn2_pin = board.GP8
-btn3_pin = board.GP7
-btn4_pin = board.GP19
-btn5_pin = board.GP20
-btn6_pin = board.GP21
+# These are the corresponding GPIOs on the Pi Pico
+# that you soldered
+
+# first row
+btn1_pin = board.GP3
+btn2_pin = board.GP2
+btn3_pin = board.GP4
+
+# second row
+btn4_pin = board.GP7
+btn5_pin = board.GP6
+btn6_pin = board.GP8
+# third row
+btn7_pin = board.GP11
+btn8_pin = board.GP10
+btn9_pin = board.GP12
+
+print('Pins set')
 
 btn1 = digitalio.DigitalInOut(btn1_pin)
 btn1.direction = digitalio.Direction.INPUT
@@ -37,25 +53,58 @@ btn6 = digitalio.DigitalInOut(btn6_pin)
 btn6.direction = digitalio.Direction.INPUT
 btn6.pull = digitalio.Pull.DOWN
 
+btn7 = digitalio.DigitalInOut(btn7_pin)
+btn7.direction = digitalio.Direction.INPUT
+btn7.pull = digitalio.Pull.DOWN
+
+btn8 = digitalio.DigitalInOut(btn8_pin)
+btn8.direction = digitalio.Direction.INPUT
+btn8.pull = digitalio.Pull.DOWN
+
+btn9 = digitalio.DigitalInOut(btn9_pin)
+btn9.direction = digitalio.Direction.INPUT
+btn9.pull = digitalio.Pull.DOWN
+
 keyboard = Keyboard(usb_hid.devices)
+
+# below are the key values that you can change to
+# fit your preferences. Change Keycode.ONE for example to
+# (Keycode.CONTROL, Keycode.F4) for CTRL + F4
+# on the first button.
+# See the official CircuitPython docs
+# for additional help
+
+# manually send keycode
+# keyboard.send(Keycode.ONE)
+
+print(btn1.value)
 
 while True:
     if btn1.value:
-        keyboard.send(Keycode.CONTROL, Keycode.F7)
+        keyboard.send(Keycode.ONE)
         time.sleep(0.1)
     if btn2.value:
-        keyboard.send(Keycode.CONTROL, Keycode.F8)
+        keyboard.send(Keycode.TWO)
         time.sleep(0.1)
     if btn3.value:
-        keyboard.send(Keycode.CONTROL, Keycode.F9)
+        keyboard.send(Keycode.THREE)
         time.sleep(0.1)
     if btn4.value:
-        keyboard.send(Keycode.CONTROL, Keycode.F10)
+        keyboard.send(Keycode.FOUR)
         time.sleep(0.1)
     if btn5.value:
-        keyboard.send(Keycode.CONTROL, Keycode.F11)
+        keyboard.send(Keycode.FIVE)
         time.sleep(0.1)
     if btn6.value:
-        keyboard.send(Keycode.CONTROL, Keycode.F12)
+        keyboard.send(Keycode.SIX)
         time.sleep(0.1)
-    time.sleep(0.1)
+    if btn7.value:
+        keyboard.send(Keycode.SEVEN)
+        time.sleep(0.1)
+    if btn8.value:
+        keyboard.send(Keycode.EIGHT)
+        time.sleep(0.1)
+    if btn9.value:
+        keyboard.send(Keycode.NINE)
+        time.sleep(0.1)
+time.sleep(0.1)
