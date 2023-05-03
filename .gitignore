@@ -4,3 +4,12 @@ $ git status
 
     #       lib\*
     #       *.png
+lib/__init__.py
+lib/adafruit_hid/__init__.py
+lib/adafruit_hid/consumer_control.py
+lib/adafruit_hid/consumer_control_code.py
+lib/adafruit_hid/gamepad.py
+lib/adafruit_hid/keyboard.py
+lib/adafruit_hid/keyboard_layout_us.py
+lib/adafruit_hid/keycode.py
+lib/adafruit_hid/mouse.py
