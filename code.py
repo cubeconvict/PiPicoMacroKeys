@@ -5,6 +5,7 @@ import time
 import usb_hid
 from adafruit_hid.keycode import Keycode
 from adafruit_hid.keyboard import Keyboard
+from adafruit_debouncer import Debouncer
 import board
 import digitalio
 
@@ -32,6 +33,7 @@ print('Pins set')
 btn1 = digitalio.DigitalInOut(btn1_pin)
 btn1.direction = digitalio.Direction.INPUT
 btn1.pull = digitalio.Pull.DOWN
+btn1 = Debouncer(btn1)
 
 btn2 = digitalio.DigitalInOut(btn2_pin)
 btn2.direction = digitalio.Direction.INPUT
