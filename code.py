@@ -5,9 +5,11 @@ import time
 import usb_hid
 from adafruit_hid.keycode import Keycode
 from adafruit_hid.keyboard import Keyboard
-from adafruit_debouncer import Debouncer
 import board
 import digitalio
+
+# kbd = Keyboard(usb_hid.devices)
+# layout = KeyboardLayoutUS(kbd)
 
 print('Script begun')
 
@@ -33,7 +35,6 @@ print('Pins set')
 btn1 = digitalio.DigitalInOut(btn1_pin)
 btn1.direction = digitalio.Direction.INPUT
 btn1.pull = digitalio.Pull.DOWN
-btn1 = Debouncer(btn1)
 
 btn2 = digitalio.DigitalInOut(btn2_pin)
 btn2.direction = digitalio.Direction.INPUT
@@ -76,37 +77,32 @@ keyboard = Keyboard(usb_hid.devices)
 # See the official CircuitPython docs
 # for additional help
 
-# manually send keycode
-# keyboard.send(Keycode.ONE)
-
-print(btn1.value)
-
 while True:
     if btn1.value:
         keyboard.send(Keycode.ONE)
-        time.sleep(0.1)
+        time.sleep(0.3)
     if btn2.value:
         keyboard.send(Keycode.TWO)
-        time.sleep(0.1)
+        time.sleep(0.3)
     if btn3.value:
         keyboard.send(Keycode.THREE)
-        time.sleep(0.1)
+        time.sleep(0.3)
     if btn4.value:
         keyboard.send(Keycode.FOUR)
-        time.sleep(0.1)
+        time.sleep(0.3)
     if btn5.value:
         keyboard.send(Keycode.FIVE)
-        time.sleep(0.1)
+        time.sleep(0.3)
     if btn6.value:
         keyboard.send(Keycode.SIX)
-        time.sleep(0.1)
+        time.sleep(0.3)
     if btn7.value:
         keyboard.send(Keycode.SEVEN)
-        time.sleep(0.1)
+        time.sleep(0.3)
     if btn8.value:
         keyboard.send(Keycode.EIGHT)
-        time.sleep(0.1)
+        time.sleep(0.3)
     if btn9.value:
         keyboard.send(Keycode.NINE)
-        time.sleep(0.1)
-time.sleep(0.1)
+        time.sleep(0.3)
+time.sleep(0.3)
