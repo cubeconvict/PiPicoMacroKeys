@@ -1,15 +1,24 @@
 # Originally coded by Novaspirit Tech
 # Copy this code into your code.py file.
 
+# Full Keycode doc
+
 import time
 import usb_hid
 from adafruit_hid.keycode import Keycode
 from adafruit_hid.keyboard import Keyboard
+
+#required line in order to enable sending of strings via layout.write
+from adafruit_hid.keyboard_layout_us import KeyboardLayoutUS
+# From original code, but won't work without the import above
+kbd = Keyboard(usb_hid.devices)
+layout = KeyboardLayoutUS(kbd)
+
 import board
 import digitalio
 
-# kbd = Keyboard(usb_hid.devices)
-# layout = KeyboardLayoutUS(kbd)
+kbd = Keyboard(usb_hid.devices)
+layout = KeyboardLayoutUS(kbd)
 
 print('Script begun')
 
@@ -77,9 +86,11 @@ keyboard = Keyboard(usb_hid.devices)
 # See the official CircuitPython docs
 # for additional help
 
+mystring1 = "Hello World!\n"
+
 while True:
     if btn1.value:
-        keyboard.send(Keycode.ONE)
+        layout.write(mystring1)
         time.sleep(0.3)
     if btn2.value:
         keyboard.send(Keycode.TWO)
