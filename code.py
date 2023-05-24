@@ -7,20 +7,16 @@ import time
 import usb_hid
 from adafruit_hid.keycode import Keycode
 from adafruit_hid.keyboard import Keyboard
+import board
+import digitalio
 
-#required line in order to enable sending of strings via layout.write
+# required line in order to enable sending of strings via layout.write
 from adafruit_hid.keyboard_layout_us import KeyboardLayoutUS
 # From original code, but won't work without the import above
 kbd = Keyboard(usb_hid.devices)
 layout = KeyboardLayoutUS(kbd)
 
-import board
-import digitalio
 
-kbd = Keyboard(usb_hid.devices)
-layout = KeyboardLayoutUS(kbd)
-
-print('Script begun')
 
 # These are the corresponding GPIOs on the Pi Pico
 # that you soldered
@@ -86,11 +82,9 @@ keyboard = Keyboard(usb_hid.devices)
 # See the official CircuitPython docs
 # for additional help
 
-mystring1 = "Hello World!\n"
-
 while True:
     if btn1.value:
-        layout.write(mystring1)
+        keyboard.send(Keycode.WINDOWS, Keycode.CONTROL, Keycode.P)
         time.sleep(0.3)
     if btn2.value:
         keyboard.send(Keycode.TWO)
